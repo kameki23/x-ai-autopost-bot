@@ -60,16 +60,13 @@ JSTで 09:00 / 13:00 / 20:00 に実行する例:
 ```
 
 ## GitHub Actions
-`.github/workflows/bot.yml` は UTC cron で実行:
-- 00:00 UTC (=09:00 JST)
-- 04:00 UTC (=13:00 JST)
-- 11:00 UTC (=20:00 JST)
+`.github/workflows/bot.yml` は10分おきに実行し、`config/rules.json` の時刻設定に合う時だけ投稿します。
 
 必要Secrets:
 - `DRY_RUN` (任意, 既定true)
 - `ALLOW_IMAGE` (任意, 既定false)
 - `X_API_KEY`
-- `X_API_SECRET`
+- `X_API_SECRET`（または `X_API_KEY_SECRET`）
 - `X_ACCESS_TOKEN`
 - `X_ACCESS_TOKEN_SECRET`
 
@@ -92,3 +89,10 @@ python webapp/app.py
 - 人物画像は `ALLOW_IMAGE=true` でのみ利用。
 - slot3 投稿には常に記事出典と画像出典（または no-face-card）を含める仕様です。
 - 例外時はリトライ/ログ記録し、致命的エラーは非0で終了します。
+
+## 投稿回数・時間の変更
+`config/rules.json` で調整できます。
+
+- `slots.slot1/slot2/slot3` : 投稿時刻（JST）
+- `enabled_slots` : 例 `[1,3]` なら1日2投稿
+- `post_window_minutes` : 指定時刻から何分以内を投稿対象にするか

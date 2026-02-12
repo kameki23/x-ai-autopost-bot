@@ -88,7 +88,13 @@ def run(slot_override: int | None = None) -> int:
     people = _load_json("config/people.json")
 
     try:
-        slot = slot_override or current_slot_jst()
+        enabled_slots = rules.get("enabled_slots", [1, 2, 3])
+        slot_window_minutes = int(os.getenv("POST_WINDOW_MINUTES", str(rules.get("post_window_minutes", 59))))
+        slot = slot_override or current_slot_jst(
+            slots=rules.get("slots", {}),
+            enabled_slots=enabled_slots,
+            window_minutes=slot_window_minutes,
+        )
         if slot is None:
             logger.info("Outside slot window (JST). Skip.")
             return 0

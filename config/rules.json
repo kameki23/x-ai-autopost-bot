@@ -8,6 +8,8 @@
     "slot2": "13:00",
     "slot3": "20:00"
   },
+  "enabled_slots": [1, 2, 3],
+  "post_window_minutes": 59,
   "writer_constraints": [
     "日本語の解説者トーン（落ち着き・客観・知性）",
     "誇張や煽り禁止、根拠の薄い断定禁止",
