@@ -1,0 +1,11 @@
+{
+  "rss": [
+    "https://www.technologyreview.com/feed/",
+    "https://feeds.arstechnica.com/arstechnica/index",
+    "https://www.wired.com/feed/category/business/latest/rss"
+  ],
+  "list_pages": [
+    "https://openai.com/news/",
+    "https://www.anthropic.com/news"
+  ]
+}

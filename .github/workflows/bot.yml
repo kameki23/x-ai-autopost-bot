@@ -1,0 +1,31 @@
+name: x-ai-case-bot
+
+on:
+  schedule:
+    # JST 09:00 / 13:00 / 20:00 => UTC 00:00 / 04:00 / 11:00
+    - cron: "0 0 * * *"
+    - cron: "0 4 * * *"
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Prepare env
+        run: |
+          cp .env.example .env
+          echo "DRY_RUN=${{ secrets.DRY_RUN || 'true' }}" >> .env
+          echo "ALLOW_IMAGE=${{ secrets.ALLOW_IMAGE || 'false' }}" >> .env
+          echo "X_API_KEY=${{ secrets.X_API_KEY }}" >> .env
+          echo "X_API_SECRET=${{ secrets.X_API_SECRET }}" >> .env
+          echo "X_ACCESS_TOKEN=${{ secrets.X_ACCESS_TOKEN }}" >> .env
+          echo "X_ACCESS_TOKEN_SECRET=${{ secrets.X_ACCESS_TOKEN_SECRET }}" >> .env
+      - name: Run bot
+        run: python -m src.main

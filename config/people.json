@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Satya Nadella",
+    "keywords": ["Microsoft", "Copilot", "enterprise AI"],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Satya_Nadella_2017.jpg",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Satya_Nadella_2017.jpg"
+  },
+  {
+    "name": "Demis Hassabis",
+    "keywords": ["DeepMind", "AlphaFold", "research"],
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Demis_Hassabis_%282023%29.jpg",
+    "image_source": "https://commons.wikimedia.org/wiki/File:Demis_Hassabis_(2023).jpg"
+  }
+]
